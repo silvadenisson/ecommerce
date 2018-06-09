@@ -90,18 +90,18 @@ $app->post('/admin/users/create', function() {
 
 	$user -> setData($_POST);
 
+	#var_dump($user);
+
 	$user -> save();
-
+	
 	header("Location: /admin/users");
-
 	exit;
-
 });
+
 
 $app->get('/admin/users/:iduser/delete', function($iduser) {
 
 	User::verifyLogin();
-	
 
 });
 
@@ -123,9 +123,6 @@ $app->post('/admin/users/:iduser', function($iduser) {
 	
 
 });
-
-
-
 
 
 $app->run();
