@@ -88,13 +88,14 @@ $app->post('/admin/users/create', function() {
 
 	$user = new User();
 
+	$_POST["inadmin"] = (isset($_POST["inadmin"]))?1:0;
+
 	$user -> setData($_POST);
 
-	#var_dump($user);
-
 	$user -> save();
-	
+
 	header("Location: /admin/users");
+
 	exit;
 });
 
@@ -109,10 +110,19 @@ $app->get('/admin/users/:iduser/delete', function($iduser) {
 $app->get('/admin/users/:iduser', function($iduser) {
 
 	User::verifyLogin();
-	
-	$page = PageAdmin();
 
-	$page->setTpl("users-upadate");
+	$user = new User();
+
+	$user -> get((int)$iduser);
+	
+	var_dump($user);
+	exit;
+
+	//$page = new PageAdmin();
+
+	//$page->setTpl("users-update", array(
+	//	"user" => $user -> getValues()
+	//));
 
 });
 
